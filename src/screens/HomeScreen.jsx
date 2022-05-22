@@ -1,5 +1,8 @@
 import React from 'react';
 import { Text, View, StyleSheet, Dimensions, ScrollView } from 'react-native';
+import ListOfCards from '../components/ListOfCards';
+
+const widthWindow = Dimensions.get('window').width;
 
 const Triangle = () => {
   return <View style={styles.triangle} />;
@@ -7,7 +10,6 @@ const Triangle = () => {
 
 export default function HomeScreen() {
   const triangleWidth = 32;
-  const widthWindow = Dimensions.get('window').width;
   const quantity = Math.ceil(widthWindow / triangleWidth);
   return (
     <ScrollView>
@@ -19,44 +21,7 @@ export default function HomeScreen() {
           <Triangle key={i} />
         ))}
       </View>
-      <View style={styles.cardsContainer}>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-        <View style={styles.square}></View>
-      </View>
+      <ListOfCards />
     </ScrollView>
   );
 }
@@ -88,19 +53,5 @@ const styles = StyleSheet.create({
     borderBottomColor: '#7F1431',
     transform: [{ rotate: '180deg' }],
     marginLeft: -15,
-  },
-  cardsContainer: {
-    flexDirection: 'row',
-    backgroundColor: 'blue',
-    flex: 1,
-    flexWrap: 'wrap',
-    paddingVertical: 20,
-    paddingHorizontal: 15,
-  },
-  square: {
-    width: 100,
-    height: 100,
-    backgroundColor: 'red',
-    alignSelf: 'flex-start',
   },
 });
