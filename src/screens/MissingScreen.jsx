@@ -5,5 +5,6 @@ export default function MissingScreen() {
   const query = 'select * from cards where times = ?';
   const times = 0;
   const params = [times];
-  return <ScreenTemplate query={query} params={params} />;
+  const noneMessage = 'Ya no le hace falta ninguna figurita';
+  return <ScreenTemplate query={query} params={params} noneMessage={noneMessage} />;
 }

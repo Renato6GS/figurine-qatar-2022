@@ -13,10 +13,7 @@ export default function Card({ id, title, times }) {
     try {
       const db = SQLite.openDatabase('db.db');
       db.transaction((tx) => {
-        tx.executeSql('update cards set times = ? where id = ?', [count, id], (_, { rows }) => {
-          console.log(JSON.stringify(rows));
-          console.log(count, id);
-        });
+        tx.executeSql('update cards set times = ? where id = ?', [count, id]);
       }, null);
     } catch (error) {
       console.log('Falló la actualización de la base de datos');

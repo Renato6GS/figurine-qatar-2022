@@ -5,5 +5,6 @@ export default function RepeatedScreen() {
   const query = 'select * from cards where times > ?';
   const times = 1;
   const params = [times];
-  return <ScreenTemplate query={query} params={params} />;
+  const noneMessage = 'No tiene ninguna figurita repetida';
+  return <ScreenTemplate query={query} params={params} noneMessage={noneMessage} />;
 }

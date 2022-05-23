@@ -15,7 +15,6 @@ export default function StatisticsScreen() {
     let repeat = 0;
 
     data.forEach((item) => {
-      console.log(item);
       const { times } = item;
 
       if (times === 0) miss++;
@@ -34,13 +33,8 @@ export default function StatisticsScreen() {
         const db = SQLite.openDatabase('db.db');
         db.transaction((tx) => {
           tx.executeSql('select * from cards', [], (_, { rows }) => {
-            console.log(JSON.stringify(rows));
-            console.log('Sin stringify');
-            console.log(rows);
+            // console.log(JSON.stringify(rows));
             const { _array } = rows;
-            console.log('array es');
-            console.log(_array);
-            // setData(_array);
             getData({ data: _array });
           });
         }, null);
