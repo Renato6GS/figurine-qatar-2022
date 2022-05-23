@@ -45,12 +45,32 @@ export default function TabNavigator({
           fontWeight: 'bold',
         },
       })}>
-      <Tab.Screen name='Home' component={HomeScreen} options={{ headerTitle: 'Todas las figuras' }} />
-      <Tab.Screen name='Obtain' component={ObtainedScreen} />
-      <Tab.Screen name='Repeat' component={RepeatedScreen} />
-      <Tab.Screen name='Missing' component={MissingScreen} />
-      <Tab.Screen name='Statistics' component={StatisticsScreen} />
-      <Tab.Screen name='About' component={About} />
+      <Tab.Screen
+        name='Home'
+        component={HomeScreen}
+        options={{ headerTitle: 'Todas las figuras', tabBarLabel: 'Inicio' }}
+      />
+      <Tab.Screen
+        name='Obtain'
+        component={ObtainedScreen}
+        options={{ headerTitle: 'Figuras obtenidas', tabBarLabel: 'Obtenidas' }}
+      />
+      <Tab.Screen
+        name='Repeat'
+        component={RepeatedScreen}
+        options={{ headerTitle: 'Figuras repetidas', tabBarLabel: 'Repetidas' }}
+      />
+      <Tab.Screen
+        name='Missing'
+        component={MissingScreen}
+        options={{ headerTitle: 'Figuras faltantes', tabBarLabel: 'Faltantes' }}
+      />
+      <Tab.Screen
+        name='Statistics'
+        component={StatisticsScreen}
+        options={{ headerTitle: 'Estadísticas', tabBarLabel: 'Estadísticas' }}
+      />
+      <Tab.Screen name='About' component={About} options={{ headerTitle: 'Acerca de', tabBarLabel: 'Acerca de' }} />
     </Tab.Navigator>
   );
 }
