@@ -4,20 +4,42 @@ import React, { useState } from 'react';
 const widthWindow = Dimensions.get('window').width;
 const slices = Math.floor(widthWindow / 150);
 const cardDimensions = Math.floor(widthWindow / slices) - 30;
+import * as SQLite from 'expo-sqlite';
 
 export default function Card({ id, title, times }) {
   const [count, setCount] = useState(times);
 
+  const updateData = ({ count }) => {
+    try {
+      const db = SQLite.openDatabase('db.db');
+      db.transaction((tx) => {
+        tx.executeSql('update cards set times = ? where id = ?', [count, id], (_, { rows }) => {
+          console.log(JSON.stringify(rows));
+          console.log(count, id);
+        });
+      }, null);
+    } catch (error) {
+      console.log('Falló la actualización de la base de datos');
+      console.log(error);
+    }
+  };
+
   const aumentar = () => {
-    setCount(count + 1);
+    const newValue = count + 1;
+    setCount(newValue);
+    updateData({ count: newValue });
   };
 
   const disminuir = () => {
-    if (count > 0) setCount(count - 1);
+    const newValue = count - 1;
+    if (count > 0) setCount(newValue);
+    updateData({ count: newValue });
   };
 
   const reiniciarContador = () => {
-    setCount(0);
+    const newValue = 0;
+    setCount(newValue);
+    updateData({ count: newValue });
   };
 
   const handleLongPress = () => {
@@ -54,9 +76,14 @@ export default function Card({ id, title, times }) {
       onPress={() => aumentar()}
       onLongPress={() => handleLongPress()}
       activeOpacity={0.7}>
-      <TouchableOpacity style={styles.btnRestar} onPress={() => disminuir()}>
-        <Text style={styles.txtRestar}>{count > 0 && '-'}</Text>
-      </TouchableOpacity>
+      {count > 0 ? (
+        <TouchableOpacity style={[styles.btnRestar]} onPress={() => disminuir()}>
+          <Text style={styles.txtRestar}>{count > 0 && '-'}</Text>
+        </TouchableOpacity>
+      ) : (
+        <Text></Text>
+      )}
+
       <Text style={[styles.title, returnTextColor(count)]}>{title}</Text>
       <Text style={[styles.subTitle, returnTextColor(count)]}>{returnCardsRepeatedly(count)}</Text>
     </TouchableOpacity>
