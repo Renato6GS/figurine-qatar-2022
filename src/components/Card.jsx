@@ -5,8 +5,8 @@ const widthWindow = Dimensions.get('window').width;
 const slices = Math.floor(widthWindow / 150);
 const cardDimensions = Math.floor(widthWindow / slices) - 30;
 
-export default function Card({ title }) {
-  const [count, setCount] = useState(0);
+export default function Card({ id, title, times }) {
+  const [count, setCount] = useState(times);
 
   const aumentar = () => {
     setCount(count + 1);
