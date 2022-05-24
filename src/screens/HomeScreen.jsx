@@ -1,8 +1,9 @@
 import React from 'react';
 import ScreenTemplate from '../components/ScreenTemplate';
 
-export default function HomeScreen({ navigation: { setParams } }) {
+export default function HomeScreen() {
   const query = 'select * from cards';
   const params = [];
-  return <ScreenTemplate query={query} params={params} setParams={setParams} />;
+  const noneMessage = 'Cargando...';
+  return <ScreenTemplate query={query} params={params} noneMessage={noneMessage} />;
 }

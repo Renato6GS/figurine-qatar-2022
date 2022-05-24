@@ -40,6 +40,7 @@ export default function ScreenTemplate({ query = '', params = [], noneMessage })
   useFocusEffect(
     useCallback(() => {
       try {
+        setData([]);
         const db = SQLite.openDatabase('db.db');
         db.transaction((tx) => {
           tx.executeSql(query, params, (_, { rows }) => {

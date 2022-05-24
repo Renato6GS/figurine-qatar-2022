@@ -18,8 +18,8 @@ export default function StatisticsScreen() {
       const { times } = item;
 
       if (times === 0) miss++;
-      else if (times === 1) obtain++;
-      else if (times > 1) repeat++;
+      if (times >= 1) obtain++;
+      if (times > 1) repeat++;
     });
 
     setMiss(miss);
@@ -47,7 +47,7 @@ export default function StatisticsScreen() {
 
   return (
     <ScrollView>
-      <ContentHeader />
+      <ContentHeader showSearch={false} />
       <View style={styles.container}>
         <View style={[styles.statisticContainer, styles.obtainContainer]}>
           <Text style={styles.text}>Figuritas obtenidas: {obtain}</Text>
